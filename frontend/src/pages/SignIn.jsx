@@ -2,12 +2,16 @@ import { Alert, Button, Label, Spinner, TextInput } from "flowbite-react"
 import { useState } from "react"
 import { Link, useNavigate } from "react-router-dom"
 import { toast } from 'react-toastify';
+import {useDispatch, useSelector} from 'react-redux'
+import { signInStart, signInSuccess, signInFailure } from "../redux/user/userSlice.js";
 
 const SignIn = () => {
   const [formData, setFormData] = useState({})
-  const [errorMessage, setErrorMessage] = useState(null)
-  const [loading, setLoading] = useState(false)
+  // const [errorMessage, setErrorMessage] = useState(null)
+  // const [loading, setLoading] = useState(false)
+  const {loading, error: errorMessage, } = useSelector(state => state.user)
   const navigate = useNavigate()
+  const dispatch = useDispatch()
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.id]: e.target.value.trim() })
   }
@@ -15,11 +19,13 @@ const SignIn = () => {
   const handleSubmit = async (e) => {
     e.preventDefault()
     if(!formData.email || !formData.password) {
-      return setErrorMessage('Please fill all the fields')
+      // return setErrorMessage('Please fill all the fields')
+      return dispatch(signInFailure('Please fill all the fields'))
     }
     try {
-      setLoading(true)
-      setErrorMessage(null)
+      // setLoading(true)
+      // setErrorMessage(null)
+      dispatch(signInStart())
       const res = await fetch('/api/auth/signin' , {
         method: 'POST',
         headers: {
@@ -29,17 +35,20 @@ const SignIn = () => {
       })
       const data = await res.json()
       if(data.success === false) {
-        return setErrorMessage(data.message)
+        // return setErrorMessage(data.message)
+        dispatch(signInFailure(data.message))
       }
-      setLoading(false)
+      // setLoading(false)
       if(res.ok) {
+        dispatch(signInSuccess(data))
         navigate('/')
+        toast.success(data.message)
       }
-      toast.success(data.message)
     } catch (error) {
       // setErrorMessage(error.message)
       toast.error(error.message)
-      setLoading(false)
+      // setLoading(false)
+      dispatch(signInFailure(error.message))
     }
   }
   return (
