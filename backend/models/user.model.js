@@ -17,7 +17,7 @@ const userSchema = new mongoose.Schema({
    },
    profilePicture: {
       type: String,
-      default: 'https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png'
+      default: 'https://static.vecteezy.com/system/resources/previews/020/765/399/non_2x/default-profile-account-unknown-icon-black-silhouette-free-vector.jpg'
    },
 
 }, {timestamps: true});
