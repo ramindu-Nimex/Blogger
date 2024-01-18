@@ -2,6 +2,7 @@ import { Alert, Button, Label, Spinner, TextInput } from "flowbite-react"
 import { useState } from "react"
 import { Link, useNavigate } from "react-router-dom"
 import { toast } from 'react-toastify';
+import OAuth from "../components/OAuth";
 
 const SignUp = () => {
   const [formData, setFormData] = useState({})
@@ -76,6 +77,7 @@ const SignUp = () => {
                 loading ? <><Spinner size='sm' /><span className="pl-3">Loading...</span></> : 'SIGN UP'
               }
             </Button>
+            <OAuth/>
           </form>
           <div className="flex gap-2 mt-5">
             <span>Have an account?</span>
