@@ -43,11 +43,11 @@ const SignIn = () => {
       if(res.ok) {
         dispatch(signInSuccess(data))
         navigate('/')
-        toast.success(data.message)
+        toast.success("User logged in successfully")
       }
     } catch (error) {
       // setErrorMessage(error.message)
-      toast.error(error.message)
+      toast.error("Something went wrong")
       // setLoading(false)
       dispatch(signInFailure(error.message))
     }

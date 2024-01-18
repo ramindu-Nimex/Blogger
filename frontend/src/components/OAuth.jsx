@@ -31,7 +31,7 @@ const OAuth = () => {
          if(res.ok) {
             dispatch(signInSuccess(data))
             navigate('/')
-            toast.success(data.message)
+            toast.success("User logged in successfully")
          }
       } catch (error) {
          toast.error("Couldn't Authorized with Google");

@@ -36,10 +36,10 @@ const SignUp = () => {
       if(res.ok) {
         navigate('/sign-in')
       }
-      toast.success(data.message)
+      toast.success("User created successfully")
     } catch (error) {
       // setErrorMessage(error.message)
-      toast.error(error.message)
+      toast.error("Something went wrong")
       setLoading(false)
     }
   }
