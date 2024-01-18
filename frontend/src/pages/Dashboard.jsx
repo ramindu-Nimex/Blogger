@@ -20,10 +20,8 @@ const Dashboard = () => {
           {/* sidebar */}
           <DashSidebar/>
       </div>
-      <div className="">
           {/* profile */}
           {tab === 'profile' && <DashProfile/>}
-      </div>
     </div>
   )
 }
