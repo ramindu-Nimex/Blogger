@@ -130,10 +130,10 @@ const DashboardComponent = () => {
                {users && users.map((user) => (
                   <Table.Body key={user._id} className="divide-y">
                      <Table.Row className="bg-white dark:border-gray-700 dark:bg-gray-800">
-                        <Table.Cell>
+                        <Table.Cell className="w-80">
                            <img src={user.profilePicture} alt="user" className="w-10 h-10 rounded-full bg-gray-500" />
                         </Table.Cell>
-                        <Table.Cell>{user.username}</Table.Cell>
+                        <Table.Cell >{user.username}</Table.Cell>
                      </Table.Row>
                   </Table.Body>
                ))}
